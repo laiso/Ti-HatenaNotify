@@ -1,0 +1,21 @@
+task("post:compile", function(event,logger) {
+  var fs = require("fs"),
+      path = require("path");
+ 
+  if (event.alloyConfig.deployType === 'production') {
+    return;
+  }
+  var existing_bits = 'Alloy.createController("index");'
+  var tishadow_bits =
+    [ 'var index = Alloy.createController("index");',
+      'if (typeof exports !== "undefined") {',
+      '  exports.close = function () {',
+      '    index.getView().close();',
+      '  };',
+      '}'
+    ].join("\n");
+  var appjs = path.join(event.dir.resources, "app.js");
+  fs.writeFileSync(
+    appjs,
+    fs.readFileSync(appjs).toString().replace(existing_bits, tishadow_bits));
+});

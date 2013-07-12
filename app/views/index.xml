@@ -1,0 +1,47 @@
+<Alloy>
+    <!--Main Window-->
+    <!--iOS-->
+    <Window id="index" platform="ios">
+        <NavigationGroup id="nav">
+            <Window title="Hatena Notify">
+                <LeftNavButton>
+                    <Button onClick="loadLogout">ログアウト</Button>
+                </LeftNavButton>
+                <RightNavButton>
+                    <Button onClick="loadNotices" systemButton="Ti.UI.iPhone.SystemButton.REFRESH"></Button>
+                </RightNavButton>
+
+                <WebView id="rootWebView"/>
+                <AdView id="ad" onError="onAdError"/>
+            </Window>
+        </NavigationGroup>
+    </Window>
+    <!-- /iOS-->
+
+    <!--Android-->
+    <Window id="index" platform="android" fullscreen="true" exitOnClose="true"
+            onClose="startAndroidService"
+            onOpen="insertAndroidAdView">
+
+        <View id="adAndroid" onError="onAdError"/>
+        <WebView id="rootWebView"/>
+
+        <Menu id="menu" platform="android">
+            <MenuItem id="menuItem" title="ログアウト" onClick="loadLogout"
+                      showAsAction="Ti.Android.SHOW_AS_ACTION_IF_ROOM"/>
+            <MenuItem id="menuItem" title="再読み込み" onClick="loadNotices"
+                      showAsAction="Ti.Android.SHOW_AS_ACTION_IF_ROOM"/>
+        </Menu>
+    </Window>
+    <!--/Android-->
+
+
+    <!--Extra Windows-->
+    <Window id="preview">
+        <LeftNavButton>
+            <Button onClick="dismissPreview">閉じる</Button>
+        </LeftNavButton>
+
+        <WebView id="contents"/>
+    </Window>
+</Alloy>
