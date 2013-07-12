@@ -1,5 +1,8 @@
 # HatenaNotify for iOS/Android
 
+![](https://raw.github.com/laiso/Ti-HatenaNotify/master/docs/screenshot/home.png)
+![](https://raw.github.com/laiso/Ti-HatenaNotify/master/docs/screenshot/badge.png)
+
 はてな(http://www.hatena.ne.jp) の「あなたへのお知らせ」の通知をiPhone, iPad, Android端末からチェックする非公式アプリです。
 
 
